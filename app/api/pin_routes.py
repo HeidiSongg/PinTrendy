@@ -4,7 +4,7 @@ from ..forms.pin_form import PinForm
 from flask_login import current_user
 from flask_login import login_required
 
-product_routes = Blueprint('products', __name__)
+pin_routes = Blueprint('pins', __name__)
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -16,10 +16,11 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-@product_routes.route('/', methods=["GET"])
+@pin_routes.route('/', methods=["GET"])
 def pins():
     """
-    Query for all pins and returns them in a list of product dictionaries.
+    Query for all pins and returns them in a list of pin dictionaries.
     """
     pins = Pin.query.all()
+
     return {'pins': [pin.to_dict() for pin in pins]}
