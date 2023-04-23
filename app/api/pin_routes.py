@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, redirect, render_template, request
-from app.models import Pin,  db
+from app.models import Pin, Comment,  db
 from ..forms.pin_form import PinForm
 from flask_login import current_user
 from flask_login import login_required
@@ -32,3 +32,11 @@ def product(pin_id):
     """
     pin = Pin.query.get(pin_id)
     return pin.to_dict()
+
+@pin_routes.route('/<int:pin_id>/comments', methods=["GET"])
+def reviews(pin_id):
+    """
+    Query for all comments and returns them in a list of review dictionaries.
+    """
+    comments = Comment.query.filter(Comment.pin_id == pin_id).all()
+    return {'comments': [comment.to_dict() for comment in comments]}

@@ -21,6 +21,6 @@ class Comment(db.Model):
         return {
             'id': self.id,
             'body': self.body,
-            'user': self.user.to_dict_flat_user(),
+            'user': self.user.to_dict(),
             'pin': self.pin.to_dict_flat_pin()
         }
