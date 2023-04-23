@@ -24,3 +24,11 @@ def pins():
     pins = Pin.query.all()
 
     return {'pins': [pin.to_dict() for pin in pins]}
+
+@pin_routes.route('/<int:pin_id>', methods=["GET"])
+def product(pin_id):
+    """
+    Query for one pin.
+    """
+    pin = Pin.query.get(pin_id)
+    return pin.to_dict()
