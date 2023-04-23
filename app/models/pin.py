@@ -16,7 +16,7 @@ class Pin(db.Model):
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     user = db.relationship("User", back_populates="pin")
-    # comments = db.relationship("Comment", back_populates="pins")
+    comment = db.relationship("Comment", back_populates="pin")
 
     def to_dict(self):
         return {
@@ -25,7 +25,7 @@ class Pin(db.Model):
             'description': self.description,
             'imageURL': self.image_URL,
             # 'user': self.user.to_dict_flat_user(),
-            # 'comments': { comment.id: comment.to_dict() for comment in self.comments }
+            'comments': { comment.id: comment.to_dict() for comment in self.comments }
         }
 
     def to_dict_flat_pin(self):
