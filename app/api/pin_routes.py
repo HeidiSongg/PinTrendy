@@ -26,7 +26,7 @@ def pins():
     return {'pins': [pin.to_dict() for pin in pins]}
 
 @pin_routes.route('/<int:pin_id>', methods=["GET"])
-def product(pin_id):
+def pin(pin_id):
     """
     Query for one pin.
     """
@@ -34,7 +34,7 @@ def product(pin_id):
     return pin.to_dict()
 
 @pin_routes.route('/<int:pin_id>/comments', methods=["GET"])
-def reviews(pin_id):
+def comments(pin_id):
     """
     Query for all comments and returns them in a list of review dictionaries.
     """
