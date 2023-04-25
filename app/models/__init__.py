@@ -4,3 +4,4 @@ from .db import environment, SCHEMA
 from .pin import Pin
 from .comment import Comment
 from .board import Board
+from .board_pin import board_pins

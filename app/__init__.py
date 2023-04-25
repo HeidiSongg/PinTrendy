@@ -34,18 +34,18 @@ db.init_app(app)
 Migrate(app, db)
 
 # Application Security
-# CORS(app)
-flask_env = os.environ.get("FLASK_ENV")
-if flask_env == "development":
-    CORS(
-        app,
-        origins=["http://localhost:3000", "http://localhost:5000"],
-        supports_credentials=True,
-    )
-elif flask_env == "production":
-    CORS(
-        app, origins="https://pet-overload.onrender.com/", supports_credentials=True
-    )
+CORS(app)
+# flask_env = os.environ.get("FLASK_ENV")
+# if flask_env == "development":
+#     CORS(
+#         app,
+#         origins=["http://localhost:3000", "http://localhost:5000"],
+#         supports_credentials=True,
+#     )
+# elif flask_env == "production":
+#     CORS(
+#         app, origins="https://pet-overload.onrender.com/", supports_credentials=True
+#     )
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.
@@ -94,11 +94,10 @@ def react_root(path):
     or index.html requests
     """
     if path == 'favicon.ico':
-        print('heyyyyyyy')
         return app.send_from_directory('public', 'favicon.ico')
     return app.send_static_file('index.html')
 
 
-@app.errorhandler(404)
-def not_found(e):
-    return app.send_static_file('index.html')
+# @app.errorhandler(404)
+# def not_found(e):
+#     return app.send_static_file('index.html')

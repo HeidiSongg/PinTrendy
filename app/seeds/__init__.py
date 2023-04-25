@@ -3,6 +3,7 @@ from .users import seed_users, undo_users
 from .pins import seed_pins, undo_pins
 from .comments import seed_comments, undo_comments
 from .boards import seed_boards, undo_boards
+from .board_pins import seed_board_pins
 
 from app.models.db import db, environment, SCHEMA
 
@@ -19,6 +20,7 @@ def seed():
         db.session.execute(f"TRUNCATE table {SCHEMA}.pins RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.boards RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.board_pins RESTART IDENTITY CASCADE;")
         # Before seeding in production, you want to run the seed undo 
         # command, which will  truncate all tables prefixed with 
         # the schema name (see comment in users.py undo_users function).
@@ -31,6 +33,7 @@ def seed():
     seed_pins()
     seed_comments()
     seed_boards()
+    seed_board_pins()
     # Add other seed functions here
 
 
