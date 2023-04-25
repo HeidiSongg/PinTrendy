@@ -13,9 +13,10 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    
+
     pin = db.relationship("Pin", back_populates="user")
     comment = db.relationship("Comment", back_populates="user")
+    board = db.relationship("Board", back_populates="user")
 
     @property
     def password(self):

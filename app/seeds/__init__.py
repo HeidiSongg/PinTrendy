@@ -2,6 +2,7 @@ from flask.cli import AppGroup
 from .users import seed_users, undo_users
 from .pins import seed_pins, undo_pins
 from .comments import seed_comments, undo_comments
+from .boards import seed_boards, undo_boards
 
 from app.models.db import db, environment, SCHEMA
 
@@ -17,6 +18,7 @@ def seed():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.pins RESTART IDENTITY CASCADE;")
         db.session.execute(f"TRUNCATE table {SCHEMA}.comments RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.boards RESTART IDENTITY CASCADE;")
         # Before seeding in production, you want to run the seed undo 
         # command, which will  truncate all tables prefixed with 
         # the schema name (see comment in users.py undo_users function).
@@ -24,9 +26,11 @@ def seed():
         undo_users()
         undo_pins()
         undo_comments()
+        undo_boards()
     seed_users()
     seed_pins()
     seed_comments()
+    seed_boards()
     # Add other seed functions here
 
 
@@ -36,4 +40,5 @@ def undo():
     undo_users()
     undo_pins()
     undo_comments()
+    undo_boards()
     # Add other undo functions here
