@@ -1,7 +1,293 @@
-.profile-dropdown {
-  position: absolute;
-}
-
 .hidden {
   display: none;
+}
+
+.profile-button-container-dropdown {
+  position: absolute;
+  margin-top: 135px;
+  background-color: white;
+  box-shadow: rgba(72, 69, 69, 0.35) 0px 5px 15px;
+  height: 95px;
+  border-radius: 10px;
+  margin-left: -45px;
+  
+}
+
+.logged-in-profile-dropdown-user-info-div {
+  padding: 10px;
+  height: 73px;
+}
+
+.profile-button-container-dropdown-logged-out {
+  height: 73px;
+  background-color: white;
+  margin-left: -40px;
+  width: 80px;
+  border-radius: 10px;
+  margin-left: -40px;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+}
+
+li.navLinks {
+  align-items: center;
+}
+
+.navLinks-logged-out {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.prof-button {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.navLinks-logged-in {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.allNavLinks {
+  display: flex;
+  justify-content: space-around;
+  padding: auto;
+  margin: auto;
+}
+
+#link {
+  padding: 10px;
+  margin: auto;
+}
+
+
+img.profile-button-img {
+  width: 26px;
+  height: 23px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.navigation-pin-logo {
+  max-width: 200px;
+  max-height: 35px;
+  margin-left: -10px;
+}
+
+.profile-button-img-logged-out {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-right: 40px;
+  background-color: white;
+}
+
+.demo-login {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.logged-in-profile-dropdown {
+  border: none;
+  border-radius: 5px;
+  width: 90px;
+  font-weight: bold;
+  list-style-type: none;
+  margin-left: -2rem;
+  /* margin-right: 14px; */
+}
+
+.logged-in-profile-dropdown-user-info {
+  border: none;
+  border-radius: 5px;
+  list-style-type: none;
+  margin-left: -2rem;
+  font-size: 11pt;
+}
+
+.logout-button {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.user-details-button {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.demo-login {
+  background-color: white;
+}
+
+.demo-login-div {
+  margin-top: 5px;
+}
+
+div#link.search {
+  margin-left: 20px;
+}
+
+@media screen and (min-width: 1200px) {
+  .hidden {
+    display: none;
+  }
+
+  .profile-button-container-dropdown {
+    position: absolute;
+    margin-top: 135px;
+    background-color: white;
+    box-shadow: rgba(72, 69, 69, 0.35) 0px 5px 15px;
+    height: 95px;
+    border-radius: 10px;
+    margin-left: -45px;
+  }
+
+  .profile-button-container-dropdown-logged-out {
+    height: 73px;
+    background-color: white;
+    margin-left: -40px;
+    width: 90px;
+    border-radius: 10px;
+  }
+
+  .navLinks {
+    display: flex;
+    flex-direction: row;
+  }
+
+  li.navLinks {
+    align-items: center;
+  }
+
+  .navLinks-logged-out {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .prof-button {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .navLinks-logged-in {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .allNavLinks {
+    display: flex;
+    justify-content: space-around;
+    padding: auto;
+    margin: auto;
+  }
+
+  #link {
+    padding: 10px;
+    margin: auto;
+  }
+
+  img.profile-button-img {
+    width: 26px;
+    height: 23px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .navigation-etsy-logo {
+    max-width: 200px;
+    max-height: 35px;
+    margin-left: -10px;
+  }
+
+  .profile-button-img-logged-out {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 40px;
+    background-color: white;
+  }
+
+  .demo-login {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .logged-in-profile-dropdown {
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    font-weight: bold;
+    list-style-type: none;
+    margin-left: -2rem;
+  }
+
+  .logged-in-profile-dropdown-user-info {
+    border: none;
+    border-radius: 5px;
+    list-style-type: none;
+    margin-left: -2rem;
+    margin-right: 14px;
+    font-size: 11pt;
+  }
+
+  .logged-in-profile-dropdown-user-info-div {
+    padding: 10px;
+    height: 73px;
+  }
+
+  .logout-button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .user-details-button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  #link.navigation-cart {
+    margin-right: 25px;
+  }
+
+  .demo-login {
+    background-color: white;
+  }
+
+  .demo-login-div {
+    margin-top: 5px;
+  }
+
+  div#link.search {
+    margin-left: 20px;
+  }
 }

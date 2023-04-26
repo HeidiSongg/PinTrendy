@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { useModal } from "../../context/Modal";
+import * as sessionActions from '../../store/session';
+import './Navigation.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const { closeModal } = useModal();
 
   const openMenu = () => {
     if (showMenu) return;
@@ -32,41 +38,74 @@ function ProfileButton({ user }) {
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    history.push("/");
+  };
+
+  const handleUserDetails = (e) => {
+    e.preventDefault();
+    history.push('/user_details')
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
   const closeMenu = () => setShowMenu(false);
 
+  const demoSubmit = (e) => {
+    e.preventDefault();
+    closeModal()
+    return dispatch(sessionActions.demoLogin());
+  };
+
+  let ifUser = () => {
+    if (user) {
+      return (
+        <img className="profile-button-img" src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRF4qeCcgDwO-sUBZyI6u2Lg7i7MoN4NC7xTw&usqp=CAU"} alt='' onClick={openMenu}></img>
+      )
+    } else {
+      return (
+        <button style={{fontSize: "20px"}} className="profile-button-img-logged-out" onClick={openMenu}>
+          <i class="fa-regular fa-user"></i>
+        </button>
+      )
+    }
+  }
+
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
-          <>
-            <li>{user.username}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={handleLogout}>Log Out</button>
-            </li>
-          </>
-        ) : (
-          <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+      {ifUser()}
+      <div className="profile-button-container-dropdown">
+        <ul className={ulClassName} ref={ulRef}>
+          {user ? (
+            <div className="logged-in-profile-dropdown-user-info-div">
+              <b><li className="logged-in-profile-dropdown-user-info">{user.firstName}</li></b>
+              <li className="logged-in-profile-dropdown-user-info">{user.email}</li>
+              <li className="logged-in-profile-dropdown"><button className="user-details-button" onClick={handleUserDetails}>User Details</button></li>
+              <li className="logged-in-profile-dropdown">
+                <button className="logout-button" onClick={handleLogout}>Log Out</button>
+              </li>
+            </div>
+          ) : (
+            <div className="profile-button-container-dropdown-logged-out">
+              <OpenModalButton
+                className='profile-button-log-in'
+                buttonText="Login"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+              />
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
-          </>
-        )}
-      </ul>
+              <OpenModalButton
+                className='profile-button-sign-up'
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+              />
+
+              <form className="demo-login-div" onSubmit={demoSubmit}>
+                <button className="demo-login">Demo Login</button>
+              </form>
+            </div>
+          )}
+        </ul>
+      </div>
     </>
   );
 }
