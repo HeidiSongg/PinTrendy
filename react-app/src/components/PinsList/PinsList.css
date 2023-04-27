@@ -1,0 +1,12 @@
+.pins-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+
+
+.pins-list-image {
+    width: 250px; 
+    height: auto; 
+    border-radius: 16px;
+  }

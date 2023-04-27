@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { allPinsThunk } from "../../store/pin";
+import { Link } from "react-router-dom";
 import "./PinsList.css";
 
 const PinsList = () => {
@@ -23,14 +24,20 @@ const PinsList = () => {
 
   return (
     <>
-      <div >
+      <div className="pins-list-grid" >
         {PINS &&
           PINS.map((pin) => (
-            <div>
+            <div
+                className="pins-list-pins"
+                key={pin.id}
+                pin={pin}>
+                <Link to={`/pins/${pin.id}`}>   
                 <img
+                  className="pins-list-image"
                   src={pin.imageURL}
                   alt="img"
                 />
+                </Link> 
             </div>
           ))}
       </div>
