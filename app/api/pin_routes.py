@@ -46,6 +46,33 @@ def add_pins():
         return pin.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+@pin_routes.route('/<int:pin_id>', methods=["PUT"])
+@login_required
+def edits_a_pin(pin_id):
+    """
+    Edits a pin by ID.
+    """
+    form = PinForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        pin = Pin.query.get(pin_id)
+
+        if pin is None:
+            return {'errors': ['Pin not found']}, 404
+
+        if pin.user_id != current_user.id:
+            return {'errors': ['You are not authorized to edit this pin']}, 403
+
+        pin.title = form.title.data
+        pin.description = form.description.data
+        pin.image_URL = form.image_URL.data
+
+        db.session.commit()
+        return pin.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
 @pin_routes.route('/<int:pin_id>', methods=["GET"])
 def pin(pin_id):
     """
