@@ -46,6 +46,14 @@ def add_pins():
         return pin.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+@pin_routes.route('/<int:pin_id>', methods=["GET"])
+def pin(pin_id):
+    """
+    Query for one pin.
+    """
+    pin = Pin.query.get(pin_id)
+    return pin.to_dict()
+
 @pin_routes.route('/<int:pin_id>', methods=["PUT"])
 @login_required
 def edits_a_pin(pin_id):
@@ -73,13 +81,15 @@ def edits_a_pin(pin_id):
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
-@pin_routes.route('/<int:pin_id>', methods=["GET"])
-def pin(pin_id):
+@pin_routes.route('/<int:pin_id>', methods=["DELETE"])
+def deletes_a_pin(pin_id):
     """
-    Query for one pin.
+    Deletes a pin by ID.
     """
     pin = Pin.query.get(pin_id)
-    return pin.to_dict()
+    db.session.delete(pin)
+    db.session.commit()
+    return {'message': 'Pin has been deleted!'}
 
 @pin_routes.route('/<int:pin_id>/comments', methods=["GET"])
 def comments(pin_id):
