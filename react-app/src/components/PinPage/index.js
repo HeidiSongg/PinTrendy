@@ -36,7 +36,7 @@ const PinPage = () => {
     <div>
       {isLoaded && pinState && (
         <>
-          <img src={pinState[pinId].imageURL} alt="" />
+          <img src={pinState[pinId].image_URL} alt="" />
           <div>{pinState[pinId].title}</div>
           <div>{pinState[pinId].description}</div>
           <h4>Comments</h4>

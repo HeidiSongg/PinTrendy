@@ -25,6 +25,27 @@ def pins():
 
     return {'pins': [pin.to_dict() for pin in pins]}
 
+@pin_routes.route('/new', methods=['POST'])
+@login_required
+def add_pins():
+    """
+    This function creates a new pin.
+    """
+    form = PinForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        pin = Pin(
+            title = form.title.data,
+            description = form.description.data,
+            image_URL = form.image_URL.data,
+            user_id = current_user.id
+        )
+        db.session.add(pin)
+        db.session.commit()
+        return pin.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 @pin_routes.route('/<int:pin_id>', methods=["GET"])
 def pin(pin_id):
     """

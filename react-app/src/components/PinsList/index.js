@@ -34,7 +34,7 @@ const PinsList = () => {
                 <Link to={`/pins/${pin.id}`}>   
                 <img
                   className="pins-list-image"
-                  src={pin.imageURL}
+                  src={pin.image_URL}
                   alt="img"
                 />
                 </Link> 

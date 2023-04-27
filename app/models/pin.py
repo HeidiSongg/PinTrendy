@@ -29,7 +29,7 @@ class Pin(db.Model):
             'id': self.id,
             'title': self.title,
             'description': self.description,
-            'imageURL': self.image_URL,
+            'image_URL': self.image_URL,
             # 'user': self.user.to_dict_flat_user(),
             'comments': { comment.id: comment.to_dict() for comment in self.comment }
         }
@@ -39,6 +39,6 @@ class Pin(db.Model):
             'id': self.id,
             'title': self.title,
             'description': self.description,
-            'imageURL': self.image_URL,
+            'image_URL': self.image_URL,
             'user': self.user.to_dict()
         }
