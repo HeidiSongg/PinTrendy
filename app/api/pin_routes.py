@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, redirect, render_template, request
 from app.models import Pin, Comment,  db
 from ..forms.pin_form import PinForm
+from ..forms.comment_form import CommentForm
 from flask_login import current_user
 from flask_login import login_required
 
@@ -98,3 +99,23 @@ def comments(pin_id):
     """
     comments = Comment.query.filter(Comment.pin_id == pin_id).all()
     return {'comments': [comment.to_dict() for comment in comments]}
+
+@pin_routes.route('/<int:pin_id>/comments', methods=["POST"])
+@login_required
+def add_comments(pin_id):
+    """
+    This function creates a new comment.
+    """
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        comment = Comment(
+            body = form.body.data,
+            user_id = current_user.id,
+            pin_id = pin_id
+        )
+        db.session.add(comment)
+        db.session.commit()
+        return comment.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400    
