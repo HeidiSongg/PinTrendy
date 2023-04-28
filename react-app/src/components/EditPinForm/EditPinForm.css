@@ -1,0 +1,22 @@
+.edit-pin-button {
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.edit-pin-form-div {
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    width: 300px;
+}
+
+.edit-pin-form-inputs {
+    margin-bottom: 10px;
+}

@@ -30,7 +30,7 @@ class Pin(db.Model):
             'title': self.title,
             'description': self.description,
             'image_URL': self.image_URL,
-            # 'user': self.user.to_dict_flat_user(),
+            'user': self.user.to_dict(),
             'comments': { comment.id: comment.to_dict() for comment in self.comment }
         }
 

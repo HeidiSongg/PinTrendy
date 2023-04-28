@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { onePinThunk } from "../../store/pin";
 import { useParams, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
+import EditPinForm from "../EditPinForm";
 
 
 const PinPage = () => {
@@ -19,7 +20,7 @@ const PinPage = () => {
 
   let pinState = useSelector((state) => state.pin);
   let userState = useSelector((state) => state.session);
-
+  
   let userId;
   if (userState.user) {
     userId = userState.user.id;
@@ -30,8 +31,19 @@ const PinPage = () => {
     userId,
   };
 
+const editPinInfo = () => {
+    if (
+        userState.user &&
+        userState.user.id === pinState[pinId].user.id
+      ) 
+      return (
+        <OpenModalButton
+          buttonText="Edit Your Pin"
+          modalComponent={<EditPinForm pin={pinState[pinId]} />}
+        />
+      );
+  };  
   
-  console.log(pinState)
   return (
     <div>
       {isLoaded && pinState && (
@@ -43,6 +55,9 @@ const PinPage = () => {
           {/* <div>{pinState[pinId].comments[2].body}</div> */}
         </>
       )}
+             <div>
+              {editPinInfo()}
+            </div>
     </div>
   );
 };

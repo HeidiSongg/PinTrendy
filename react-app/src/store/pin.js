@@ -1,6 +1,7 @@
 const GET_PINS = "pins/getPins";
 const GET_ONE_PIN = "pins/getOnePin";
 const ADD_PIN = "pins/addPin";
+const EDIT_PIN = "pins/editPin";
 
 const getPins = (pins) => {
     return {
@@ -19,6 +20,13 @@ const getOnePin = (pin) => {
 const addPin = (pin) => {
     return {
       type: ADD_PIN,
+      pin,
+    };
+  };
+
+const editPin = (pin) => {
+    return {
+      type: EDIT_PIN,
       pin,
     };
   };
@@ -58,6 +66,20 @@ export const makePinThunk = (pin) => async (dispatch) => {
       }
   };  
 
+export const editPinThunk = (pin) => async (dispatch) => {
+    const res = await fetch(`/api/pins/${pin.pinId}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pin),
+    });
+  
+    if (res.ok) {
+      const pinEdited = await res.json();
+      dispatch(editPin(pinEdited));
+      return pinEdited;
+    }
+  };  
+
 const initialState = {};
 
 const pinReducer = (state = initialState, action) => {
@@ -76,6 +98,10 @@ const pinReducer = (state = initialState, action) => {
       let newAddPinState = {}
       newAddPinState[action.pin.id] = action.pin;
       return newAddPinState;
+    case EDIT_PIN:
+        let newEditPinState = {}
+        newEditPinState[action.pin.id] = action.pin;
+        return newEditPinState;
     default:
       return state;
   }
