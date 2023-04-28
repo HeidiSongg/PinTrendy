@@ -119,3 +119,21 @@ def add_comments(pin_id):
         db.session.commit()
         return comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400    
+
+@pin_routes.route('/<int:pin_id>/comments/<int:comment_id>', methods=["PUT"])
+def edits_a_comment(pin_id, comment_id):
+    """
+    Edits a comment by ID.
+    """
+    form = CommentForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        data = form.data
+        comment = Comment.query.get(comment_id)
+
+        for key, value in data.items():
+            setattr(comment, key, value)
+        db.session.commit()
+        return comment.to_dict()
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
