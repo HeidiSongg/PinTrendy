@@ -1,5 +1,6 @@
 const GET_PINS = "pins/getPins";
-const GET_ONE_PIN = "products/getOnePin";
+const GET_ONE_PIN = "pins/getOnePin";
+const ADD_PIN = "pins/addPin";
 
 const getPins = (pins) => {
     return {
@@ -11,6 +12,13 @@ const getPins = (pins) => {
 const getOnePin = (pin) => {
     return {
       type: GET_ONE_PIN,
+      pin,
+    };
+  };
+
+const addPin = (pin) => {
+    return {
+      type: ADD_PIN,
       pin,
     };
   };
@@ -29,6 +37,26 @@ const getOnePin = (pin) => {
     return res;
   };  
 
+export const makePinThunk = (pin) => async (dispatch) => {
+    const res = await fetch("/api/pins/new", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(pin),
+    });
+  
+    if (res.ok) {
+      const newPin = await res.json();
+      dispatch(addPin(newPin));
+      return newPin;
+    } else if (res.status < 500) {
+          const data = await res.json();
+          if (data.errors) {
+              return data.errors;
+          }
+      } else {
+          return ["An error occurred. Please try again."];
+      }
+  };  
 
 const initialState = {};
 
@@ -44,6 +72,10 @@ const pinReducer = (state = initialState, action) => {
       let newPinState = {};
         newPinState[action.pin.id] = action.pin;
         return newPinState;
+    case ADD_PIN:
+      let newAddPinState = {}
+      newAddPinState[action.pin.id] = action.pin;
+      return newAddPinState;
     default:
       return state;
   }

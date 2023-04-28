@@ -14,7 +14,7 @@ function Navigation({ isLoaded }) {
 			<ul className='allNavLinks'>
 				<li className='navLinks-logged-in'>
 					<NavLink id='link' exact to="/"><img className='navigation-pin-logo' src={img} alt=''></img></NavLink>
-					<NavLink title="Create a Product Listing" id='link' className="navigation-create-a-product" exact to="/products/create"><i class="fa-solid fa-store"></i></NavLink>
+					<NavLink title="Create a Pin" id='link' exact to="/pins/new">Create Pin</NavLink>
 				</li>
 				{isLoaded && (
 					<li className='navLinks'>
