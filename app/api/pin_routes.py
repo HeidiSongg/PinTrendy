@@ -137,3 +137,13 @@ def edits_a_comment(pin_id, comment_id):
         db.session.commit()
         return comment.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+@pin_routes.route('/<int:pin_id>/comments/<int:comment_id>', methods=["DELETE"])
+def deletes_a_comment(pin_id, comment_id):
+    """
+    Deletes a comment by ID.
+    """
+    comment = Comment.query.get(comment_id)
+    db.session.delete(comment)
+    db.session.commit()
+    return {'message': 'Your comment has been deleted!'}
