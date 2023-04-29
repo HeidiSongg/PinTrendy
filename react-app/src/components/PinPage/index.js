@@ -7,6 +7,7 @@ import { useParams, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import EditPinForm from "../EditPinForm";
 import CreateCommetForm from "../CreateCommentForm";
+import CommentCard from "../CommentCard";
 
 
 const PinPage = () => {
@@ -107,11 +108,16 @@ const editPinInfo = () => {
           <div>{pinState[pinId].title}</div>
           <div>{pinState[pinId].description}</div>
           <h4>Comment</h4>
+          {userAddComment()}
           {individualCommentArr.length > 0 &&
                 individualCommentArr.map((comment) => {
-                    return comment.body;
+                    return (
+                        <CommentCard
+                          key={comment.id}
+                          comment={comment}
+                        />
+                      );
                 })}
-            {userAddComment()}
            <div>
             <br></br>
           {editPinInfo()}
