@@ -6,6 +6,7 @@ import { allCommentsByPinIdThunk } from "../../store/comment";
 import { useParams, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import EditPinForm from "../EditPinForm";
+import CreateCommetForm from "../CreateCommentForm";
 
 
 const PinPage = () => {
@@ -38,13 +39,11 @@ const PinPage = () => {
 
   if (isLoaded) {
     individualCommentArr = Object.values(commentState);
-    console.log('######',individualCommentArr)
   }
 
     if (isLoaded) {
     individualCommentArr = individualCommentArr.filter((comment) => {
       if (comment.pin.id === parseInt(pinId)) {
-        console.log('@@@@@@',Object.values(comment))
         return Object.values(comment);
       }
     });
@@ -91,6 +90,15 @@ const editPinInfo = () => {
     }
   };
 
+  const userAddComment = () => {
+      return (
+        <OpenModalButton
+          buttonText="Add a Comment"
+          modalComponent={<CreateCommetForm pinId={pinId} />}
+        />
+      );
+  };
+
   return (
     <div>
       {isLoaded && pinState[pinId] && individualCommentArr && (
@@ -101,9 +109,9 @@ const editPinInfo = () => {
           <h4>Comment</h4>
           {individualCommentArr.length > 0 &&
                 individualCommentArr.map((comment) => {
-                    console.log(comment)
                     return comment.body;
                 })}
+            {userAddComment()}
            <div>
             <br></br>
           {editPinInfo()}
