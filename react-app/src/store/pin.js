@@ -2,6 +2,7 @@ const GET_PINS = "pins/getPins";
 const GET_ONE_PIN = "pins/getOnePin";
 const ADD_PIN = "pins/addPin";
 const EDIT_PIN = "pins/editPin";
+const DELETE_PIN = "pins/deletePin";
 
 const getPins = (pins) => {
     return {
@@ -31,6 +32,12 @@ const editPin = (pin) => {
     };
   };
 
+const deletePin = (id) => {
+    return {
+      type: DELETE_PIN,
+      id,
+    };
+  };  
   export const allPinsThunk = () => async (dispatch) => {
     const res = await fetch("/api/pins/");
     const data = await res.json();
@@ -80,6 +87,16 @@ export const editPinThunk = (pin) => async (dispatch) => {
     }
   };  
 
+export const deletePinThunk = (id) => async (dispatch) => {
+    const res = await fetch(`/api/pins/${id}`, {
+      method: "DELETE",
+    });
+  
+    if (res.ok) {
+      dispatch(deletePin(id));
+    }
+  };  
+
 const initialState = {};
 
 const pinReducer = (state = initialState, action) => {
@@ -102,6 +119,10 @@ const pinReducer = (state = initialState, action) => {
         let newEditPinState = {}
         newEditPinState[action.pin.id] = action.pin;
         return newEditPinState;
+    case DELETE_PIN:
+      let newDeletePinState = {}
+      delete newDeletePinState[action.id]
+      return newDeletePinState;
     default:
       return state;
   }

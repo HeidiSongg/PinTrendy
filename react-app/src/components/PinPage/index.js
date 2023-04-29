@@ -1,7 +1,7 @@
 import "./PinPage.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { onePinThunk } from "../../store/pin";
+import { onePinThunk, deletePinThunk } from "../../store/pin";
 import { useParams, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import EditPinForm from "../EditPinForm";
@@ -44,20 +44,47 @@ const editPinInfo = () => {
       );
   };  
   
+  const pinDeleter = () => {
+    const confirm = window.confirm(
+      `Are you sure you wish to delete the pin "${pinState[pinId].title}"?`
+    );
+    if (confirm) {
+      dispatch(deletePinThunk(pinId)).then(() => {
+        history.push("/")
+      });
+    }
+  };
+
+  const userDeletePin = () => {
+    if (
+      userState.user &&
+      userState.user.id === pinState[pinId].user.id
+    ) {
+      return (
+        <button
+          onClick={() => {
+            pinDeleter();
+          }}
+        >
+          Delete Pin
+        </button>
+      );
+    }
+  };
+
   return (
     <div>
-      {isLoaded && pinState && (
+      {isLoaded && pinState[pinId] && (
         <>
           <img src={pinState[pinId].image_URL} alt="" />
           <div>{pinState[pinId].title}</div>
           <div>{pinState[pinId].description}</div>
           <h4>Comments</h4>
           {/* <div>{pinState[pinId].comments[2].body}</div> */}
+          {editPinInfo()}
+          {userDeletePin()}
         </>
       )}
-             <div>
-              {editPinInfo()}
-            </div>
     </div>
   );
 };
