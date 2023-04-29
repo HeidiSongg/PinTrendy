@@ -2,6 +2,7 @@ import "./PinPage.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { onePinThunk, deletePinThunk } from "../../store/pin";
+import { allCommentsByPinIdThunk } from "../../store/comment";
 import { useParams, useHistory } from "react-router-dom";
 import OpenModalButton from "../OpenModalButton";
 import EditPinForm from "../EditPinForm";
@@ -15,12 +16,14 @@ const PinPage = () => {
 
   useEffect(() => {
     dispatch(onePinThunk(pinId))
+      .then(dispatch(allCommentsByPinIdThunk(pinId)))
       .then(() => setIsLoaded(true));
   }, [dispatch, pinId]);
 
   let pinState = useSelector((state) => state.pin);
   let userState = useSelector((state) => state.session);
-  
+  let commentState = useSelector((state) => state.comment);
+
   let userId;
   if (userState.user) {
     userId = userState.user.id;
@@ -30,6 +33,22 @@ const PinPage = () => {
     pinId,
     userId,
   };
+
+  let individualCommentArr = [];
+
+  if (isLoaded) {
+    individualCommentArr = Object.values(commentState);
+    console.log('######',individualCommentArr)
+  }
+
+    if (isLoaded) {
+    individualCommentArr = individualCommentArr.filter((comment) => {
+      if (comment.pin.id === parseInt(pinId)) {
+        console.log('@@@@@@',Object.values(comment))
+        return Object.values(comment);
+      }
+    });
+  }
 
 const editPinInfo = () => {
     if (
@@ -74,15 +93,22 @@ const editPinInfo = () => {
 
   return (
     <div>
-      {isLoaded && pinState[pinId] && (
+      {isLoaded && pinState[pinId] && individualCommentArr && (
         <>
           <img src={pinState[pinId].image_URL} alt="" />
           <div>{pinState[pinId].title}</div>
           <div>{pinState[pinId].description}</div>
-          <h4>Comments</h4>
-          {/* <div>{pinState[pinId].comments[2].body}</div> */}
+          <h4>Comment</h4>
+          {individualCommentArr.length > 0 &&
+                individualCommentArr.map((comment) => {
+                    console.log(comment)
+                    return comment.body;
+                })}
+           <div>
+            <br></br>
           {editPinInfo()}
           {userDeletePin()}
+          </div>     
         </>
       )}
     </div>
@@ -91,4 +117,3 @@ const editPinInfo = () => {
 
 
 export default PinPage;
-
