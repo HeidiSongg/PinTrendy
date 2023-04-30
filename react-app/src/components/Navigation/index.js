@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import img from './pinterest.jpeg'
+import SearchBar from '../SearchBar';
 
 function Navigation({ isLoaded }) {
 	const sessionUser = useSelector(state => state.session.user);
@@ -15,6 +16,7 @@ function Navigation({ isLoaded }) {
 				<li className='navLinks-logged-in'>
 					<NavLink id='link' exact to="/"><img className='navigation-pin-logo' src={img} alt=''></img></NavLink>
 					<NavLink title="Create a Pin" id='link' exact to="/pins/new">Create Pin</NavLink>
+					<SearchBar id='link' placeholder='Search' />
 				</li>
 				{isLoaded && (
 					<li className='navLinks'>
