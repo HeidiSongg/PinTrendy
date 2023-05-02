@@ -94,15 +94,15 @@ export const editCommentThunk = (comment) => async (dispatch) => {
         });
         return newState;
         case ADD_COMMENT:
-            let newAddCommentState = {};
+            let newAddCommentState = {...state};
             newAddCommentState[action.comment.id] = action.comment;
             return newAddCommentState;
         case EDIT_COMMENT:
-            let newEditCommentState = {};
+            let newEditCommentState = {...state};
             newEditCommentState[action.comment.id] = action.comment;
             return newEditCommentState;
         case DELETE_COMMENT:
-            let newDeleteCommentState = {};
+            let newDeleteCommentState = {...state};
             delete newDeleteCommentState[action.comment.id]
             return newDeleteCommentState;
         default:
