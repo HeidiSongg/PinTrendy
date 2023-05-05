@@ -24,6 +24,7 @@ const PinsList = () => {
 
   return (
     <>
+    <div className="pins-wrapper">
       <div className="pins-list-grid" >
         {PINS &&
           PINS.map((pin) => (
@@ -40,6 +41,7 @@ const PinsList = () => {
                 </Link> 
             </div>
           ))}
+      </div>
       </div>
     </>
   );

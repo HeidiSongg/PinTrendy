@@ -1,12 +1,28 @@
-.pins-list-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+
+  .pins-wrapper{
+    display: flex;
+    justify-content: center;
+    margin-left: 20%;
+    margin-right: 20%;
   }
 
-
-.pins-list-image {
-    width: 250px; 
-    height: auto; 
+  .pins-list-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 16px;
+    justify-items: center;
+    width: 100%;
+  }
+  
+  .pins-list-pins {
+    display: flex;
+    justify-content: center;
+  }
+  .pins-list-image {
+    display: block;
+    width: 100%;
+    height: auto;
     border-radius: 16px;
+    cursor: zoom-in;
+    object-fit: cover;
   }

@@ -14,8 +14,13 @@ function Navigation({ isLoaded }) {
 		sessionLinks = (
 			<ul className='allNavLinks'>
 				<li className='navLinks-logged-in'>
-					<NavLink id='link' exact to="/"><img className='navigation-pin-logo' src={img} alt=''></img></NavLink>
-					<NavLink title="Create a Pin" id='link' exact to="/pins/new">Create Pin</NavLink>
+					<NavLink id='link' exact to="/" activeClassName="active">
+					<div className='navigation-pin-logo-container'>
+						<img className='navigation-pin-logo' src={img} alt=''></img>
+						</div>
+						</NavLink>
+					<NavLink id='link' className="navigation-home" exact to="/">Home</NavLink>
+					<NavLink title="Create a Pin" id='link' className="navigation-create-button" exact to="/pins/new">Create</NavLink>
 					<SearchBar id='link' placeholder='Search' />
 				</li>
 				{isLoaded && (
@@ -30,6 +35,8 @@ function Navigation({ isLoaded }) {
 			<ul className='allNavLinks'>
 				<li className='navLinks-logged-out'>
 					<NavLink id='link' exact to="/"><img className='navigation-pin-logo' src={img} alt=''></img></NavLink>
+					<NavLink id='link' className="navigation-home" exact to="/">Home</NavLink>
+					<SearchBar id='link' placeholder='Search' />
 				</li>
 				{isLoaded && (
 					<li className='navLinks'>
