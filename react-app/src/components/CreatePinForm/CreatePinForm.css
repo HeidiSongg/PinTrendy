@@ -1,10 +1,26 @@
+.create-pin-container {
+    background-color: #efefef;
+  }
+
 .create-pin-form {
-    padding: 80px;
+    padding: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius :30px;
+    cursor: pointer;
+    background-color: white;
+    margin-top: 20px;
+    margin-left: 20%;
+    margin-right: 20%;
   }
   
   .createPin-field {
-    display: flex;
-    flex-direction: row;
+    /* display: flex;
+    flex-direction: row; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 30px;
   }
   
   .createPin-errors {
@@ -17,13 +33,37 @@
     background-color: rgb(252, 227, 227);
   }
   
-  .createPin-input {
-    max-height: 20px;
+
+  .createPin-input-title {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid black;
     margin-bottom: auto;
     margin-top: 20px;
     width: 100%;
+    padding-bottom: 20px;
+    font-size: 40px;
+    font-family: "Proxima Nova", sans-serif;
+  }
+
+  .createPin-input-title::placeholder {
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Proxima Nova", sans-serif;
+  }
+
+  .createPin-input-title:focus {
+    border-bottom-color: blue;
   }
   
+  .createPin-input-title:focus::after {
+    content: "Your first 40 characters are what usually shows up in feeds";
+    display: block;
+    color: blue;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+
   .createPin-keys {
     max-width: 200px;
   }

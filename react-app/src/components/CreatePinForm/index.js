@@ -58,22 +58,25 @@ const CreatePinForm = () => {
 
 
   return sessionUser.id ? (
+    <div className = "create-pin-container">
     <section className="create-pin-form">
       <form onSubmit={handleSubmit}>
         {errorHandle()}
 
         <div className='createPin-field'>
           <div className='createPin-keys'>
-            <h4>Add your title</h4>
           </div>
-          <input
-            className='createPin-input'
+          <textarea
+            className='createPin-input-title'
             type="text"
+            rows='1'
             placeholder="Add your title"
             value={title}
             onChange={updateTitle}
           />
         </div>
+
+        <div>{sessionUser.username}</div>
 
         <div className='createPin-field'>
         <div className='createPin-keys'>
@@ -107,6 +110,7 @@ const CreatePinForm = () => {
         </div>
       </form>
     </section>
+    </div>
   ) : null;
 };
 
