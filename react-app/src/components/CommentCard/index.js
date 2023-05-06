@@ -49,12 +49,19 @@ const CommentCard = ({ comment }) => {
 
   return (
     <div>
-        <div>{comment.body}</div>
-          <div>{comment.user.username}</div>
-        <div>
-          {editCommentInfo()}
-          {deleteComment()}
-        </div>
+        <div className="comment-card">
+        <img
+            className="comment-user-img"
+            src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png"
+            alt=""
+          />
+            <span className="comment-username">{comment.user.username}</span> 
+            <span>       </span>
+            <span className="comment-body">{comment.body}</span>
+            {editCommentInfo()}
+            {deleteComment()}
+            </div>
+
       </div>
   );
 };

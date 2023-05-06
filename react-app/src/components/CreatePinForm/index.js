@@ -100,8 +100,8 @@ const CreatePinForm = () => {
             type="text"
             rows = '1'
             placeholder="Image URL"
-            value={description}
-            onChange={updateDescription}
+            value={image_URL}
+            onChange={updateImageURL}
           />
         </div>
 
