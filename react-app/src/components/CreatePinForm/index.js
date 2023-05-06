@@ -80,11 +80,11 @@ const CreatePinForm = () => {
 
         <div className='createPin-field'>
         <div className='createPin-keys'>
-            <h4>Tell everyone what your pin is about</h4>
           </div>
           <textarea
             className='createPin-input-description'
             type="text"
+            rows = '1'
             placeholder="Tell everyone what your pin is about"
             value={description}
             onChange={updateDescription}
@@ -94,14 +94,14 @@ const CreatePinForm = () => {
 
         <div className='createPin-field'>
         <div className='createPin-keys'>
-            <h4>Image URL</h4>
           </div>
-          <input
-            className='createPin-input'
+          <textarea
+            className='createPin-input-image'
             type="text"
-            placeholder="Image url here"
-            value={image_URL}
-            onChange={updateImageURL}
+            rows = '1'
+            placeholder="Image URL"
+            value={description}
+            onChange={updateDescription}
           />
         </div>
 

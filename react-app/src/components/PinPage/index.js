@@ -104,25 +104,50 @@ const editPinInfo = () => {
     <div>
       {isLoaded && pinState[pinId] && individualCommentArr && (
         <>
-          <img src={pinState[pinId].image_URL} alt="" />
-          <div>{pinState[pinId].title}</div>
-          <div>{pinState[pinId].description}</div>
-          <h4>Comment</h4>
+        {/* <div className = "pin-card">
+          <div className="pin-container">
+            <img src={pinState[pinId].image_URL} alt="" />
+        <div>
+            <h2>{pinState[pinId].title}</h2>
+            <p>{pinState[pinId].description}</p>
+             {editPinInfo()}
+             {userDeletePin()}
+        </div>
+        </div>
+        <div className="comments">
+        <h4>Comments</h4>
+            {userAddComment()}
+            {individualCommentArr.length > 0 &&
+             individualCommentArr.map((comment) => {
+        return (
+            <CommentCard
+                key={comment.id}
+                comment={comment}
+            />
+         );
+        })}
+        </div>
+        </div> */}
+        <div className="pin-card">
+  <div className="pin-container">
+    <div className="image-container">
+      <img src={pinState[pinId].image_URL} alt="" />
+    </div>
+    <div className="text-container">
+      <h2>{pinState[pinId].title}</h2>
+      <p>{pinState[pinId].description}</p>
+      {editPinInfo()}
+      {userDeletePin()}
+      <h4>Comments</h4>
+    {individualCommentArr.length > 0 &&
+      individualCommentArr.map((comment) => {
+        return <CommentCard key={comment.id} comment={comment} />;
+      })}
           {userAddComment()}
-          {individualCommentArr.length > 0 &&
-                individualCommentArr.map((comment) => {
-                    return (
-                        <CommentCard
-                          key={comment.id}
-                          comment={comment}
-                        />
-                      );
-                })}
-           <div>
-            <br></br>
-          {editPinInfo()}
-          {userDeletePin()}
-          </div>     
+    </div>
+  </div>
+</div>
+
         </>
       )}
     </div>

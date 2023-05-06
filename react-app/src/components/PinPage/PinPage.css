@@ -1,0 +1,41 @@
+  .pin-card {
+    background-color: #efefef;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+  }
+  
+  .pin-container {
+    display: flex;
+  }
+  
+  .image-container {
+    width: 50%;
+    padding: 30px;
+    border-radius: 30px;
+  }
+  
+  .image-container img {
+    width: 100%;
+    height: auto;
+    border-radius: 30px;
+  }
+  
+  .text-container {
+    width: 50%;
+    padding: 30px;
+  }
+  
+  .text-container h2 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .text-container p {
+    margin: 10px 0;
+  }
+  
+  .comments {
+    margin-top: 20px;
+  }
+  
