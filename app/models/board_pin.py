@@ -4,13 +4,13 @@ board_pins = db.Table(
     db.Column(
         "board_id", 
         db.Integer, 
-        db.ForeignKey("boards.id"), 
+        db.ForeignKey(add_prefix_for_prod("boards.id")), 
         primary_key=True
     ),
     db.Column(
         "pin_id", 
         db.Integer, 
-        db.ForeignKey("pins.id"), 
+        db.ForeignKey(add_prefix_for_prod("pins.id")), 
         primary_key=True
     )
 )
