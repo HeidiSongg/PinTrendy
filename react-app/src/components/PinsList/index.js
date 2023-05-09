@@ -14,14 +14,11 @@ const PinsList = () => {
   }, [dispatch]);
 
   let pinsState = useSelector((state) => state.pin);
-  console.log('pinstate',pinsState)
 
   let PINS;
   if (isLoaded) {
     PINS = Object.values(pinsState);
   }
-  console.log('PINSSSS',PINS)
-
   return (
     <>
     <div className="pins-wrapper">
