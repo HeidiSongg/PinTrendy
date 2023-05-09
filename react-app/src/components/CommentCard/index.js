@@ -15,7 +15,7 @@ const CommentCard = ({ comment }) => {
     if (userState.user && comment && userState.user.id === comment.user.id) {
       return (
         <OpenModalButton
-          buttonText="Edit Your Comment"
+        buttonText="✏️"
           modalComponent={
             <EditCommentForm comment={comment} pinId={pinId} />
           }
@@ -41,7 +41,7 @@ const CommentCard = ({ comment }) => {
             commentDeleter();
           }}
         >
-          Delete Comment
+          🗑️
         </button>
       );
     }

@@ -40,7 +40,7 @@
   margin-top: 135px;
   background-color: white;
   box-shadow: rgba(72, 69, 69, 0.35) 0px 5px 15px;
-  height: 95px;
+  height: 200px;
   border-radius: 10px;
   margin-left: -45px;
   
@@ -205,7 +205,7 @@ div#link.search {
     margin-top: 135px;
     background-color: white;
     box-shadow: rgba(72, 69, 69, 0.35) 0px 5px 15px;
-    height: 95px;
+    height: 150px;
     border-radius: 10px;
     margin-left: -45px;
   }
