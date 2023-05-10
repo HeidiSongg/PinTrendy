@@ -12,5 +12,6 @@ board_pins = db.Table(
         db.Integer, 
         db.ForeignKey(add_prefix_for_prod("pins.id")), 
         primary_key=True
-    )
+    ),
+    schema = SCHEMA
 )
