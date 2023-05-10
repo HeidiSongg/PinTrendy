@@ -9,15 +9,20 @@
   .pins-list-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-auto-rows: auto;
+    grid-auto-flow: dense;
     grid-gap: 16px;
     justify-items: center;
     width: 100%;
+    break-inside: avoid;
   }
   
   .pins-list-pins {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
+
   .pins-list-image {
     display: block;
     width: 100%;
@@ -26,3 +31,5 @@
     cursor: zoom-in;
     object-fit: cover;
   }
+
+
