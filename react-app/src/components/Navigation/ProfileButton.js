@@ -63,7 +63,7 @@ function ProfileButton({ user }) {
     } else {
       return (
         <button style={{fontSize: "20px"}} className="profile-button-img-logged-out" onClick={openMenu}>
-          <i class="fa-regular fa-user"></i>
+          <i class="fa-solid fa-user"></i>
         </button>
       )
     }
