@@ -93,14 +93,19 @@ const editPinInfo = () => {
     }
   };
 
-  const userAddComment = () => {
+const userAddComment = () => {
+    if (
+      userState.user 
+    ) {
       return (
         <OpenModalButton
-          buttonText="Add a Comment"
-          modalComponent={<CreateCommetForm pinId={pinId} />}
-        />
+                   buttonText="Add a Comment"
+                   modalComponent={<CreateCommetForm pinId={pinId} />}
+                 />
       );
+    }
   };
+
 
   return (
     <div>
