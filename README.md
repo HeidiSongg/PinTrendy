@@ -2,6 +2,8 @@
 
 Pintrendy is a Python and React web app that replicates the essential features of Pinterest.It was built using Node.js, SQLAlchemy, Flask, Sequelize, Sqlite3, React, Redux, HTML5, CSS, Git, Python, and JavaScript.
 
+![homepage](homepage.png)
+
 ## Features
 1. Create Pin
 2. Get Pin
