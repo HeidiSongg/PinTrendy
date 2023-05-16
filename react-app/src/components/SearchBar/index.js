@@ -46,7 +46,7 @@ const SearchBar = ({ placeholder, data }) => {
         </div>
       </div>
       {filterData.length !== 0 && (
-        <div className='dataResult'>
+        <div className='dataResult'  style={{ zIndex: '999' }}>
           {filterData.slice(0, 15).map((value, key) => {
             return <a className='dataItem' key={value.id} href={`/pins/${value.id}`}>
               <p>{value.title}</p>
