@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allPinsThunk,makePinThunk } from "../../store/pin";
 import { useHistory } from "react-router-dom";
+import UploadImage from "../UploadImage";
 
 const CreatePinForm = () => {
   const dispatch = useDispatch();
@@ -11,12 +12,16 @@ const CreatePinForm = () => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [image_URL, setImageURL] = useState("");
+  const [image, setImage] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const updateImage = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+}
   const updateTitle = (e) => setTitle(e.target.value);
   const updateDescription = (e) => setDescription(e.target.value);
-  const updateImageURL = (e) => setImageURL(e.target.value);
+//   const updateImageURL = (e) => setImageURL(e.target.value);
 
   useEffect(() => {
     dispatch(allPinsThunk());
@@ -26,6 +31,27 @@ const CreatePinForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let image_URL
+
+    const formData = new FormData();
+    formData.append("image", image);
+            
+    const res = await fetch('/api/images', {
+        mode: 'no-cors',
+        method: "POST",
+        body: formData,
+    });
+
+    console.log(res)
+
+    if (res.ok) {
+        image_URL = await res.json();
+        history.push("/images");
+    }
+    else {
+        console.log("error")
+    }
 
     const payload = {
       title,
@@ -95,14 +121,12 @@ const CreatePinForm = () => {
         <div className='createPin-field'>
         <div className='createPin-keys'>
           </div>
-          <textarea
-            className='createPin-input-image'
-            type="text"
-            rows = '1'
-            placeholder="Image URL"
-            value={image_URL}
-            onChange={updateImageURL}
-          />
+          <input
+              type="file"
+              accept="image/*"
+              onChange={updateImage}
+            />
+          {/* <UploadImage updateImage={updateImage} image_URL={image_URL} /> */}
         </div>
 
         <div className='createPin-save-container'>

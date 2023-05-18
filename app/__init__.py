@@ -9,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.pin_routes import pin_routes
 from .api.board_routes import board_routes
+from .api.image_routes import image_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -32,18 +33,25 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(pin_routes, url_prefix='/api/pins')
 app.register_blueprint(board_routes, url_prefix='/api/boards')
+app.register_blueprint(image_routes, url_prefix='/api/images')
+
 db.init_app(app)
 Migrate(app, db)
 
 # Application Security
-CORS(app)
-# flask_env = os.environ.get("FLASK_ENV")
-# if flask_env == "development":
-#     CORS(
-#         app,
-#         origins=["http://localhost:3000", "http://localhost:5000"],
-#         supports_credentials=True,
-#     )
+# CORS(
+#          app,
+#          origins=["*"],
+#          supports_credentials=True,
+#      )
+# CORS(app)
+flask_env = os.environ.get("FLASK_ENV")
+if flask_env == "development":
+    CORS(
+        app,
+        origins=["http://localhost:3000", "http://localhost:5000"],
+        supports_credentials=True,
+    )
 # elif flask_env == "production":
 #     CORS(
 #         app, origins="https://pet-overload.onrender.com/", supports_credentials=True

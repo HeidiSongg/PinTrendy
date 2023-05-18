@@ -53,6 +53,7 @@ const deletePin = (id) => {
   };  
 
 export const makePinThunk = (pin) => async (dispatch) => {
+
     const res = await fetch("/api/pins/new", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

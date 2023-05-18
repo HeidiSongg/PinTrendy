@@ -31,7 +31,7 @@ class Pin(db.Model):
             'description': self.description,
             'image_URL': self.image_URL,
             'user': self.user.to_dict(),
-            'comments': { comment.id: comment.to_dict() for comment in self.comment }
+            # 'comments': { comment.id: comment.to_dict() for comment in self.comment }
         }
 
     def to_dict_flat_pin(self):

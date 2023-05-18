@@ -97,8 +97,10 @@ def comments(pin_id):
     """
     Query for all comments and returns them in a list of review dictionaries.
     """
-    comments = Comment.query.filter(Comment.pin_id == pin_id).all()
-    return {'comments': [comment.to_dict() for comment in comments]}
+    # comments = Comment.query.filter(Comment.pin_id == pin_id).all()
+    pin = Pin.query.get(pin_id)
+
+    return {'comments': [comment.to_dict() for comment in pin.comment]}
 
 @pin_routes.route('/<int:pin_id>/comments', methods=["POST"])
 @login_required
