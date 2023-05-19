@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allPinsThunk,makePinThunk } from "../../store/pin";
 import { useHistory } from "react-router-dom";
-import UploadImage from "../UploadImage";
 
 const CreatePinForm = () => {
   const dispatch = useDispatch();
