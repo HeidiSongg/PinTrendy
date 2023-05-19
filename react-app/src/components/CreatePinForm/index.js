@@ -37,13 +37,10 @@ const CreatePinForm = () => {
     const formData = new FormData();
     formData.append("image", image);
             
-    const res = await fetch('/api/images', {
-        mode: 'no-cors',
+    const res = await fetch('/api/images/', {
         method: "POST",
         body: formData,
     });
-
-    console.log(res)
 
     if (res.ok) {
         image_URL = await res.json();
@@ -56,7 +53,7 @@ const CreatePinForm = () => {
     const payload = {
       title,
       description,
-      image_URL,
+      image_URL : image_URL.url,
     };
 
     createdPin = await dispatch(makePinThunk(payload))
@@ -67,7 +64,6 @@ const CreatePinForm = () => {
     }
 
   };
-
 
   const errorHandle = () => {
     if (errors.length > 0) {
@@ -81,7 +77,6 @@ const CreatePinForm = () => {
       )
     }
   }
-
 
   return sessionUser.id ? (
     <div className = "create-pin-container">
@@ -126,7 +121,6 @@ const CreatePinForm = () => {
               accept="image/*"
               onChange={updateImage}
             />
-          {/* <UploadImage updateImage={updateImage} image_URL={image_URL} /> */}
         </div>
 
         <div className='createPin-save-container'>
